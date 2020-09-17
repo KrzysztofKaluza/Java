@@ -17,7 +17,6 @@ public class DemoApplication {
 		app.setDefaultProperties(Collections
 		.singletonMap("server.port", "8079"));
 		app.run(args);
-
 	}
 
 	@GetMapping("/hello")
