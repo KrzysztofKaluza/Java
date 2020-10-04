@@ -7,7 +7,7 @@ public interface Piece {
     void capture();
     void isCaptured();
     TypeOfPiece getType();
-    void move();
+    void move(Directions direction, int fields) throws Exception;
     Color getColor();
 
 }

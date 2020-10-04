@@ -8,13 +8,13 @@ public class Pawn implements Piece{
 
     private final TypeOfPiece type;
     private final Color color;
-    private Map<String, Integer> position;
+    private Map<String, Integer> piecePosition;
 
     public Pawn(int x_pos, int y_pos, Color color){
         this.type = TypeOfPiece.PAWN;
-        assert this.position != null;
-        this.position.put("x", x_pos);
-        this.position.put("y", y_pos);
+        this.piecePosition.put("x", x_pos);
+        this.piecePosition.put("y", y_pos);
+        assert this.piecePosition != null;
         this.color = color;
     }
 
@@ -35,7 +35,46 @@ public class Pawn implements Piece{
     }
 
     @Override
-    public void move() {
+    public void move(Directions direction, int fields) throws Exception{
+        if(fields != 1){
+            throw new Exception("EXCEPTION::FIELDS_VALUE::PAWN");
+        }
+        if(this.color == Color.WHITE){
+            switch (direction){
+                case NORTH:
+                    this.piecePosition.put("x", this.piecePosition.get("x"));
+                    this.piecePosition.put("y", this.piecePosition.get("y") - fields);
+                    break;
+                case NORTH_EAST:
+                    this.piecePosition.put("x", this.piecePosition.get("x") + fields);
+                    this.piecePosition.put("y", this.piecePosition.get("y") - fields);
+                    break;
+                case NORTH_WEST:
+                    this.piecePosition.put("x", this.piecePosition.get("x") - fields);
+                    this.piecePosition.put("y", this.piecePosition.get("y") - fields);
+                    break;
+                default:
+                    throw new Exception("EXCEPTION::BAD_DIRECTION::PAWN");
+            }
+        }
+        else{
+            switch (direction){
+                case SOUTH_EAST:
+                    this.piecePosition.put("x", this.piecePosition.get("x") + fields);
+                    this.piecePosition.put("y", this.piecePosition.get("y") + fields);
+                    break;
+                case SOUTH:
+                    this.piecePosition.put("x", this.piecePosition.get("x"));
+                    this.piecePosition.put("y", this.piecePosition.get("y") + fields);
+                    break;
+                case SOUTH_WEST:
+                    this.piecePosition.put("x", this.piecePosition.get("x") - fields);
+                    this.piecePosition.put("y", this.piecePosition.get("y") + fields);
+                    break;
+                default:
+                    throw new Exception("EXCEPTION::BAD_DIRECTION::PAWN");
+            }
+        }
 
     }
 
@@ -44,7 +83,7 @@ public class Pawn implements Piece{
         return null;
     }
 
-    public Map<String, Integer> getPosition() {
-        return position;
+    public Map<String, Integer> getPiecePosition() {
+        return piecePosition;
     }
 }
