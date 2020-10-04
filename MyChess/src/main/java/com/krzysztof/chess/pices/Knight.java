@@ -2,6 +2,7 @@ package com.krzysztof.chess.pices;
 
 import com.krzysztof.chess.Color;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Knight implements Piece{
@@ -39,26 +40,14 @@ public class Knight implements Piece{
         if(fields != 3){
             throw new Exception("EXCEPTION::FIELDS_VALUE::KNIGHT");
         }
-        switch (direction){
-            case NORTH:
-                break;
-            case NORTH_EAST:
-                break;
-            case EAST:
-                break;
-            case SOUTH_EAST:
-                break;
-            case SOUTH:
-                break;
-            case SOUTH_WEST:
-                break;
-            case WEST:
-                break;
-            case NORTH_WEST:
-                break;
-            default:
-                throw new Exception("EXCEPTION::BAD_DIRECTION::KNIGHT");
+        if(!Arrays.asList(Directions.NORTH, Directions.NORTH_EAST, Directions.EAST,
+                Directions.SOUTH_EAST, Directions.SOUTH, Directions.SOUTH_WEST,
+                Directions.WEST, Directions.NORTH_WEST).contains(direction)){
+            throw new Exception("EXCEPTION::WRONG_DIRECTION::KNIGHT");
         }
+        Map<String, Integer> newPosition = Movement.moveKnight(this.piecePosition, direction);
+        this.piecePosition.replace("x", newPosition.get("x"));
+        this.piecePosition.replace("y", newPosition.get("y"));
     }
 
     @Override

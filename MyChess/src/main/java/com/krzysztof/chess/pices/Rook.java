@@ -2,6 +2,7 @@ package com.krzysztof.chess.pices;
 
 import com.krzysztof.chess.Color;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Rook implements Piece{
@@ -38,26 +39,12 @@ public class Rook implements Piece{
         if(fields > 7){
             throw new Exception("EXCEPTION::FIELDS_VALUE::ROOK");
         }
-        switch (direction){
-            case NORTH:
-                this.piecePosition.put("x", this.piecePosition.get("x"));
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            case EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y"));
-                break;
-            case SOUTH:
-                this.piecePosition.put("x", this.piecePosition.get("x"));
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y"));
-                break;
-            default:
-                throw new Exception("EXCEPTION::BAD_DIRECTION::ROOK");
+        if(!Arrays.asList(Directions.NORTH, Directions.EAST, Directions.SOUTH, Directions.WEST).contains(direction)){
+            throw new Exception("EXCEPTION::WRONG_DIRECTION::ROOK");
         }
+        Map<String, Integer> newPosition = Movement.move(this.piecePosition, direction, fields);
+        this.piecePosition.replace("x", newPosition.get("x"));
+        this.piecePosition.replace("y", newPosition.get("y"));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.krzysztof.chess.pices;
 
 import com.krzysztof.chess.Color;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Queen implements Piece{
@@ -38,42 +39,14 @@ public class Queen implements Piece{
         if(fields > 7){
             throw new Exception("EXCEPTION::FIELDS_VALUE::QUEEN");
         }
-        switch (direction){
-            case NORTH:
-                this.piecePosition.put("x", this.piecePosition.get("x"));
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            case NORTH_EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            case EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y"));
-                break;
-            case SOUTH_EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case SOUTH:
-                this.piecePosition.put("x", this.piecePosition.get("x"));
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case SOUTH_WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y"));
-                break;
-            case NORTH_WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            default:
-                throw new Exception("EXCEPTION::BAD_DIRECTION::QUEEN");
+        if(!Arrays.asList(Directions.NORTH, Directions.NORTH_EAST, Directions.EAST,
+                Directions.SOUTH_EAST, Directions.SOUTH, Directions.SOUTH_WEST,
+                Directions.WEST, Directions.NORTH_WEST).contains(direction)){
+            throw new Exception("EXCEPTION::WRONG_DIRECTION::QUEEN");
         }
+        Map<String, Integer> newPosition = Movement.move(this.piecePosition, direction, fields);
+        this.piecePosition.replace("x", newPosition.get("x"));
+        this.piecePosition.replace("y", newPosition.get("y"));
     }
 
     @Override

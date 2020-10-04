@@ -2,6 +2,7 @@ package com.krzysztof.chess.pices;
 
 import com.krzysztof.chess.Color;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Bishop implements Piece{
@@ -39,26 +40,13 @@ public class Bishop implements Piece{
         if(fields > 7){
             throw new Exception("EXCEPTION::FIELDS_VALUE::BISHOP");
         }
-        switch (direction){
-            case NORTH_EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            case SOUTH_EAST:
-                this.piecePosition.put("x", this.piecePosition.get("x") + fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case SOUTH_WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") + fields);
-                break;
-            case NORTH_WEST:
-                this.piecePosition.put("x", this.piecePosition.get("x") - fields);
-                this.piecePosition.put("y", this.piecePosition.get("y") - fields);
-                break;
-            default:
-                throw new Exception("EXCEPTION::BAD_DIRECTION::BISHOP");
+        if(!Arrays.asList(Directions.NORTH_EAST, Directions.SOUTH_EAST,
+                Directions.SOUTH_WEST, Directions.NORTH_WEST).contains(direction)){
+            throw new Exception("EXCEPTION::WRONG_DIRECTION::BISHOP");
         }
+        Map<String, Integer> newPosition = Movement.move(this.piecePosition, direction, fields);
+        this.piecePosition.replace("x", newPosition.get("x"));
+        this.piecePosition.replace("y", newPosition.get("y"));
     }
 
     @Override
