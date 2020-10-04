@@ -3,6 +3,7 @@ package com.krzysztof.chess.pices;
 import com.krzysztof.chess.Color;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Rook implements Piece{
@@ -12,9 +13,9 @@ public class Rook implements Piece{
 
     public Rook(int x_pos, int y_pos, Color color){
         this.type = TypeOfPiece.ROOK;
+        piecePosition = new HashMap<>();
         this.piecePosition.put("x", x_pos);
         this.piecePosition.put("y", y_pos);
-        assert this.piecePosition != null;
         this.color = color;
     }
 
@@ -31,7 +32,7 @@ public class Rook implements Piece{
 
     @Override
     public TypeOfPiece getType() {
-        return null;
+        return this.type;
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Rook implements Piece{
 
     @Override
     public Color getColor() {
-        return null;
+        return this.color;
     }
 
     public Map<String, Integer> getPiecePosition() {

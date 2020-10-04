@@ -3,6 +3,7 @@ package com.krzysztof.chess.pices;
 import com.krzysztof.chess.Color;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Knight implements Piece{
@@ -12,10 +13,9 @@ public class Knight implements Piece{
 
     public Knight(int x_pos, int y_pos, Color color){
         this.type = TypeOfPiece.KNIGHT;
-
+        piecePosition = new HashMap<>();
         this.piecePosition.put("x", x_pos);
         this.piecePosition.put("y", y_pos);
-        assert this.piecePosition != null;
         this.color = color;
     }
 
@@ -52,7 +52,7 @@ public class Knight implements Piece{
 
     @Override
     public Color getColor() {
-        return null;
+        return this.color;
     }
 
     public Map<String, Integer> getPiecePosition() {

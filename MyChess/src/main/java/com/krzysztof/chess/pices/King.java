@@ -17,7 +17,6 @@ public class King implements Piece{
         piecePosition = new HashMap<>();
         this.piecePosition.put("x", x_pos);
         this.piecePosition.put("y", y_pos);
-        assert this.piecePosition != null;
         this.color = color;
     }
 
@@ -53,7 +52,7 @@ public class King implements Piece{
 
     @Override
     public Color getColor() {
-        return color;
+        return this.color;
     }
 
     public Map<String, Integer> getPiecePosition() {
