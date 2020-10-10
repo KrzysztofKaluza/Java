@@ -4,6 +4,7 @@ import com.krzysztof.chess.states.MainMenuState;
 import com.krzysztof.chess.states.State;
 
 import java.util.List;
+import java.util.Stack;
 import java.util.Vector;
 
 
@@ -13,7 +14,8 @@ public class Game {
     private double deltaTimeS;
     private double subtractTime;
     private GameGUI gui;
-    private List<State> listOfStates;
+    //private List<State> listOfStates;
+    private Stack<State> states;
 
     /**
      * Initializers
@@ -21,11 +23,13 @@ public class Game {
     private void initVariables(){
         this.subtractTime = System.nanoTime();
         this.gui = new GameGUI();
-        this.listOfStates = new Vector<>();
+        //this.listOfStates = new Vector<>();
+        this.states = new Stack<>();
     }
 
     private void initStates(){
-        this.listOfStates.add(new MainMenuState(this.deltaTimeS, this.gui));
+        //this.listOfStates.add(new MainMenuState(this.deltaTimeS, this.gui));
+        this.states.push(new MainMenuState(this.gui));
     }
 
     public Game(){
@@ -47,6 +51,9 @@ public class Game {
      */
     public void update(){
 
+        if(!this.states.empty()) {
+            this.states.peek().update(this.deltaTimeS);
+        }
     }
 
     /**

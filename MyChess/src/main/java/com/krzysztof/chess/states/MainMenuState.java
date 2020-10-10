@@ -6,19 +6,25 @@ public class MainMenuState implements State{
 
     private double dt;
     private GameGUI gui;
+    private short closeCounter;
 
-    public MainMenuState(double dt ,GameGUI gui){
+    public MainMenuState(GameGUI gui){
         this.dt = dt;
         this.gui = gui;
+        this.closeCounter = 0;
     }
 
     @Override
     public void endState() {
 
+
+        if(closeCounter > 0){
+
+        }
     }
 
     @Override
-    public void update() {
+    public void update(double dt) {
 
     }
 

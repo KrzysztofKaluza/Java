@@ -4,7 +4,7 @@ public interface State {
 
     public void endState();
 
-    public void update();
+    public void update(double dt);
     public void render();
 
 }
