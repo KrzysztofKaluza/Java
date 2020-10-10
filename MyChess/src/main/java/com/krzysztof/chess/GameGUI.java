@@ -1,5 +1,6 @@
 package com.krzysztof.chess;
 
+
 import javax.swing.*;
 
 public class GameGUI extends JFrame {

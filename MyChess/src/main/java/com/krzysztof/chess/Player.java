@@ -4,9 +4,9 @@ package com.krzysztof.chess;
  */
 public class Player {
 
-
     private final String name;
     private final Color color;
+    private boolean isMoving;
     /**
      *  Constructor for a Player
      * @param name  name of a Player
@@ -29,5 +29,13 @@ public class Player {
      */
     public Color getColor() {
         return color;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
+    public boolean getIsMoving(){
+        return this.isMoving;
     }
 }
