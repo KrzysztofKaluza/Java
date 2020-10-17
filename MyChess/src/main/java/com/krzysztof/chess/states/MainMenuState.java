@@ -18,7 +18,7 @@ public class MainMenuState implements State{
     public void endState() {
 
 
-        if(closeCounter > 0){
+        if(this.closeCounter > 0){
 
         }
     }

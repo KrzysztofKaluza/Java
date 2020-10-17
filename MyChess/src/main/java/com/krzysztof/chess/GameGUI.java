@@ -5,11 +5,9 @@ import javax.swing.*;
 
 public class GameGUI extends JFrame {
 
-    private boolean isOpen;
+    private GamePanel gamePanel;
 
-    public GameGUI(){
-        this.InitWindow();
-    }
+    private boolean isOpen;
 
     public void InitWindow(){
         this.isOpen = true;
@@ -17,6 +15,18 @@ public class GameGUI extends JFrame {
         this.setVisible(true);
         this.setSize(1280, 720);
         this.setTitle("Why not?!");
+    }
+
+    public GameGUI(){
+        this.gamePanel = new GamePanel();
+        this.InitWindow();
+        buildGUI();
+    }
+
+    // TEMPORARY METHOD
+    private void buildGUI(){
+        add(gamePanel);
+        pack();
     }
 
     public void setIsOpen(boolean isOpen){

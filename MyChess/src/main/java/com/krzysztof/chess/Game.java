@@ -14,7 +14,6 @@ public class Game {
     private double deltaTimeS;
     private double subtractTime;
     private GameGUI gui;
-    //private List<State> listOfStates;
     private Stack<State> states;
 
     /**
@@ -23,15 +22,18 @@ public class Game {
     private void initVariables(){
         this.subtractTime = System.nanoTime();
         this.gui = new GameGUI();
-        //this.listOfStates = new Vector<>();
         this.states = new Stack<>();
+        this.deltaTime = 0;
+        this.deltaTimeS = 0;
     }
 
     private void initStates(){
-        //this.listOfStates.add(new MainMenuState(this.deltaTimeS, this.gui));
         this.states.push(new MainMenuState(this.gui));
     }
 
+    /**
+     * Constructors
+     */
     public Game(){
         initVariables();
         initStates();
@@ -61,6 +63,9 @@ public class Game {
      */
     public void render(){
 
+        if(!this.states.empty()){
+            this.states.peek().render();
+        }
 
     }
 
@@ -75,7 +80,6 @@ public class Game {
      * Main loop of application
      */
     public void run(){
-        initVariables();
         while(gui.getIsOpen()){
             updateDt();
             update();
