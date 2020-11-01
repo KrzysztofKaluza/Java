@@ -4,35 +4,32 @@ import com.krzysztof.chess.states.AllStateNames;
 import com.krzysztof.chess.states.MainMenuState;
 import com.krzysztof.chess.states.State;
 
+import javax.swing.*;
 import java.util.EnumMap;
-import java.util.Stack;
 
 
 public class Game {
-
+    private Timer timer;
     private double deltaTime;
     private double deltaTimeS;
     private double subtrahendTime;
     private GameGUI gui;
-    //private Stack<State> states;
     private AllStateNames stateValue;
-    private EnumMap<AllStateNames, State> states1;
+    private EnumMap<AllStateNames, State> states;
     /**
      * Initializers
      */
     private void initVariables(){
         this.subtrahendTime = System.nanoTime();
         this.gui = new GameGUI();
-        this.states1 = new EnumMap<>(AllStateNames.class);
-        //this.states = new Stack<>();
+        this.states = new EnumMap<>(AllStateNames.class);
         this.stateValue = AllStateNames.MAIN_MENU_STATE;
         this.deltaTime = 0;
         this.deltaTimeS = 0;
     }
 
     private void initStates(){
-        //this.states.push(new MainMenuState(this.gui, this.deltaTimeS));
-        this.states1.put(AllStateNames.MAIN_MENU_STATE,new MainMenuState(this.gui, this.deltaTimeS, this));
+        this.states.put(AllStateNames.MAIN_MENU_STATE,new MainMenuState(this, this.gui, this.deltaTimeS));
     }
 
     /**
@@ -57,9 +54,8 @@ public class Game {
      */
     public void update(){
 
-        if(/*!this.states.empty()*/true) {
-            this.states1.get(this.stateValue).update(this.deltaTimeS);
-            //this.states.peek().update(this.deltaTimeS);
+        if(true) {
+            this.states.get(this.stateValue).update(this.deltaTimeS);
         }
     }
 
@@ -68,9 +64,8 @@ public class Game {
      */
     public void render(){
 
-        if(/*!this.states.empty()*/true){
-            //this.states.peek().render();
-            this.states1.get(this.stateValue).render();
+        if(true){
+            this.states.get(this.stateValue).render();
         }
 
     }

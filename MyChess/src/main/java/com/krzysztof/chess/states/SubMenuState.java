@@ -1,5 +1,6 @@
 package com.krzysztof.chess.states;
 
+import com.krzysztof.chess.Game;
 import com.krzysztof.chess.GameGUI;
 
 public class SubMenuState implements State {
@@ -8,7 +9,7 @@ public class SubMenuState implements State {
     private GameGUI gui;
     private short closeCounter;
 
-    public SubMenuState(GameGUI gui, double dt){
+    public SubMenuState(Game game, GameGUI gui, double dt){
         this.dt = dt;
         this.gui = gui;
         this.closeCounter = 0;

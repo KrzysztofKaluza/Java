@@ -2,10 +2,12 @@ package com.krzysztof.chess;
 
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.Color;
 
 public class GameGUI extends JFrame {
 
-    private GamePanel gamePanel;
+    public GamePanel gamePanel;
 
     private boolean isOpen;
 
@@ -13,8 +15,8 @@ public class GameGUI extends JFrame {
         this.isOpen = true;
         this.setDefaultCloseOperation(GameGUI.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setSize(1280, 720);
-        this.setTitle("Why not?!");
+        //this.setSize(1280, 720);
+        this.setTitle("Chess");
     }
 
     public GameGUI(){
@@ -37,7 +39,9 @@ public class GameGUI extends JFrame {
         return this.isOpen;
     }
 
-    public void render(){}
+    public void render(){
+
+    }
 
     public void update(){}
 

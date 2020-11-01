@@ -3,26 +3,41 @@ package com.krzysztof.chess.states;
 import com.krzysztof.chess.Game;
 import com.krzysztof.chess.GameGUI;
 
-public class MainMenuState implements State{
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
+public class MainMenuState implements State{
+    Button button;
+    // to get control over state machine
+    private Game game;
     private double dt;
     private GameGUI gui;
-    private short closeCounter;
 
-    public MainMenuState(GameGUI gui, double dt, Game game){
+    private BufferedImage background;
+
+    public MainMenuState(Game game, GameGUI gui, double dt){
+        this.game = game;
         this.dt = dt;
         this.gui = gui;
-        this.closeCounter = 0;
+        try{
+            background = ImageIO.read(new File("D:\\Java\\Java\\MyChess\\src\\main\\resources\\bg.png"));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void endState() {
 
+    }
 
-        if(this.closeCounter > 0){
+    public void updateButton(){
 
-        }
     }
 
     @Override
@@ -32,6 +47,11 @@ public class MainMenuState implements State{
 
     @Override
     public void render() {
+        Graphics g = this.gui.gamePanel.getGraphics();
+        ImageObserver observer = (img, infoflags, x, y, width, height) -> false;
+        g.drawImage(background, 1, 1, observer);
 
+        g.setColor(Color.RED);
+        g.fillRect(100, 100, 200, 200);
     }
 }
